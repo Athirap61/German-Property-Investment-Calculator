@@ -93,15 +93,20 @@ app.layout = html.Div(
                             0.1,
                             2,
                         ),
+                        create_slider(
+                            "Savings Interest Rate (%)",
+                            "savings_interest_rate",
+                            0,
+                            10,
+                            0.1,
+                            0,
+                        ),
                         create_input("Monthly Expenses (€)", "monthly_expenses", 2000),
                         html.H3("🏢 Apartment Details"),
                         create_input("Purchase Price (€)", "purchase_price", 300000),
                         create_input("Apartment Size (sqm)", "apartment_size_sqm", 60),
                         create_input(
                             "Land Value per sqm (€)", "land_value_per_sqm", 1100
-                        ),
-                        create_input(
-                            "Rental Income Monthly (€)", "rental_income_monthly", 1500
                         ),
                         create_input("Hausgeld Monthly (€)", "hausgeld_monthly", 300),
                         create_input(
@@ -113,6 +118,10 @@ app.layout = html.Div(
                             0,
                         ),
                         create_input("Renovation Costs (€)", "renovation_costs", 5000),
+                        html.H3("🔑 Rental Information"),
+                        create_input(
+                            "Rental Income Monthly (€)", "rental_income_monthly", 1500
+                        ),
                         create_slider(
                             "Vacancy Rate (%)", "vacancy_rate", 0, 10, 0.1, 2
                         ),
@@ -135,34 +144,7 @@ app.layout = html.Div(
                 # Column 2
                 html.Div(
                     [
-                        html.H3("🏦 Mortgage Values"),
-                        create_slider(
-                            "Mortgage Rate (%)", "mortgage_rate", 0, 10, 0.1, 4
-                        ),
-                        create_slider(
-                            "Loan Percentage (%)", "loan_percentage", 0, 100, 1, 100
-                        ),
-                        create_slider(
-                            "Principal Repayment Rate (%)",
-                            "principal_repayment_rate",
-                            0,
-                            10,
-                            0.1,
-                            2,
-                        ),
-                        create_input("Years", "years", 32),
-                        html.H3("⚙️ Other Settings"),
-                        create_slider(
-                            "Depreciation Rate (%)", "depreciation_rate", 0, 10, 0.1, 2
-                        ),
-                        create_slider(
-                            "Savings Interest Rate (%)",
-                            "savings_interest_rate",
-                            0,
-                            10,
-                            0.1,
-                            0,
-                        ),
+                        html.H3("💰 Purchase Costs"),
                         create_slider(
                             "Property Transfer Tax Rate (%)",
                             "property_transfer_tax_rate",
@@ -185,10 +167,35 @@ app.layout = html.Div(
                             0.1,
                             0.5,
                         ),
+                        html.H3("🏦 Mortgage Values"),
+                        create_slider(
+                            "Mortgage Rate (%)", "mortgage_rate", 0, 10, 0.1, 4
+                        ),
+                        create_slider(
+                            "Loan Percentage (%)", "loan_percentage", 0, 100, 1, 100
+                        ),
+                        create_slider(
+                            "Principal Repayment Rate (%)",
+                            "principal_repayment_rate",
+                            0,
+                            10,
+                            0.1,
+                            2,
+                        ),
+                        html.H3("⚙️ Other Settings"),
+                        create_input("Simulation Years", "years", 32),
+                        create_slider(
+                            "Property Depreciation Rate (%)",
+                            "depreciation_rate",
+                            0,
+                            10,
+                            0.1,
+                            2,
+                        ),
                         html.Div(
                             [
-                                html.H3(
-                                    "🏠 Furnishing Option",
+                                html.H4(
+                                    "Furnishing Option",
                                     style={"display": "inline-block"},
                                 ),
                                 dcc.RadioItems(
@@ -209,6 +216,7 @@ app.layout = html.Div(
                                         },
                                     ],
                                     value="unfurnished",
+                                    style={"display": "inline-block"},
                                 ),
                             ],
                         ),
@@ -226,7 +234,7 @@ app.layout = html.Div(
         html.Br(),
         html.Div(
             [
-                html.H2("Furniture Calculation", style={"textAlign": "center"}),
+                html.H2("🪑 Furniture Calculation", style={"textAlign": "center"}),
                 dbc.Accordion(
                     [
                         html.Div(
@@ -234,13 +242,14 @@ app.layout = html.Div(
                                 html.H4(
                                     "Depreciation Method",
                                     style={
-                                        "width": "20%",
                                         "display": "inline-block",
                                         "vertical-align": "top",
+                                        "margin-left": "20px",
+                                        "width": "20%",
                                     },
                                 ),
                                 html.Div(
-                                    style={"width": "5%", "display": "inline-block"},
+                                    style={"display": "inline-block", "width": "5%"},
                                 ),
                                 dcc.Dropdown(
                                     id="depreciation_method",
@@ -255,7 +264,7 @@ app.layout = html.Div(
                                         },
                                     ],
                                     value="berlin",
-                                    style={"width": "75%", "display": "inline-block"},
+                                    style={"width": "70%", "display": "inline-block"},
                                     persistence="depreciation_method",
                                     persistence_type="local",
                                 ),
@@ -383,7 +392,7 @@ app.layout = html.Div(
                                             },
                                         ),
                                         html.H5(
-                                            "3️⃣ Yearly Depreciation",
+                                            "4️⃣ Yearly Depreciation",
                                             style={
                                                 "display": "inline-block",
                                                 "margin": "20px",

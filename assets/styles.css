@@ -1,0 +1,6 @@
+.dash-spreadsheet .Select-menu-outer {
+  z-index: 1111;
+  margin-bottom: 20px;
+  display: block !important;
+  position: absolute;
+}
